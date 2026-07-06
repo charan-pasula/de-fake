@@ -1,16 +1,14 @@
 # PROJECT REPORT: De-Fake
 ## An Advanced Deepfake Detection System using Vision Transformers (ViT)
 
-**Project Duration:** 6 Months  
-**Date:** July 2026
-
 ### Team Members:
-1. **[Enter Your Name Here]** - [Enter Roll/ID Number]
-2. **[Enter Teammate 2 Name Here]** - [Enter Roll/ID Number]
-3. **[Enter Teammate 3 Name Here]** - [Enter Roll/ID Number]
-*(Add or remove members as needed)*
+1. charan pasula - 24P81A05B3
+2. kamsani srujith kumar - 24P81A0596
+3. rachakonda sanjana - 24P81A05B7
+4.ponugoti bhavya - 24P81A05B4
+5.telikapalli chandana - 24P81A05C3
 
-**Under the Guidance of:** [Enter Faculty Guide Name Here]
+Under the Guidance of:dr.G.keerthi madam
 
 ---
 
