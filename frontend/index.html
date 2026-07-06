@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>De-Fake Detection</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ===================== NAVBAR ===================== -->
+    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 30px; margin-bottom: 30px;">
+        <img src="{{ url_for('static', filename='images/ai-face.png') }}" alt="De Fake Logo" style="width: 45px; height: 45px; border-radius: 50%; border: 2px solid #4FCBFF;">
+        <h2 style="margin: 0; color: #fff; font-weight: 700; letter-spacing: 3px; font-size: 22px;">DE FAKE</h2>
+    </div>
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="version">
+                VISION TRANSFORMER • DEEPFAKE DETECTOR
+            </p>
+
+            <h1>
+                Detect Deep Fakes with
+                <span>Vision Transformers</span>
+            </h1>
+
+            <p class="description">
+                Experience next-generation deepfake detection powered by
+                Vision Transformers. Upload an image and instantly determine
+                whether it is <strong>REAL</strong> or <strong>FAKE</strong>
+                through advanced global attention analysis.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="/detect" class="start-btn">
+                    <span>Start Detection</span>
+                    <i>→</i>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= FEATURE CARDS ================= -->
+
+    <section class="cards">
+
+        <div class="card">
+
+            <div class="icon">
+                ▦
+            </div>
+
+            <h3>01 • Image Patching</h3>
+
+            <p>
+                Input image is divided into
+                16 × 16 patches for transformer processing.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">
+                ◈
+            </div>
+
+            <h3>02 • Patch Embedding</h3>
+
+            <p>
+                Every patch is converted into a high-dimensional
+                embedding representation.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">
+                ⌘
+            </div>
+
+            <h3>03 • Self Attention</h3>
+
+            <p>
+                Vision Transformer analyzes global relationships
+                across every image patch.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">
+                🛡
+            </div>
+
+            <h3>04 • Final Prediction</h3>
+
+            <p>
+                The trained model classifies the uploaded image
+                as <strong>REAL</strong> or <strong>FAKE</strong>.
+            </p>
+
+        </div>
+
+    </section>
+
+</div>
+
+</body>
+</html>

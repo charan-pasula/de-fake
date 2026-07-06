@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepfake Detection Console</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='detect.css') }}">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="background-grid"></div>
+
+<div class="container">
+
+    <!-- ===================== NAVBAR ===================== -->
+    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 30px; margin-bottom: -10px;">
+        <img src="{{ url_for('static', filename='images/ai-face.png') }}" alt="De Fake Logo" style="width: 45px; height: 45px; border-radius: 50%; border: 2px solid #4FCBFF;">
+        <h2 style="margin: 0; color: #fff; font-weight: 700; letter-spacing: 3px; font-size: 22px;">DE FAKE</h2>
+    </div>
+   
+    <!-- ================= HEADER ================= -->
+
+    <section class="heading">
+
+        <p class="mini-title">
+            / DETECT • UPLOAD PORTRAIT FOR VIT INFERENCE
+        </p>
+
+        <h1>
+            DE FAKE
+        </h1>
+
+    </section>
+
+    <!-- ================= MAIN SECTION ================= -->
+
+    <section class="main">
+
+        <!-- LEFT PANEL -->
+
+        <div class="upload-panel">
+
+            <h3>/ INPUT • TARGET IMAGE</h3>
+
+            <div class="drop-area" id="dropArea">
+
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/*"
+                    hidden>
+
+                <img
+                    id="previewImage"
+                    src=""
+                    alt="Preview">
+
+                <div id="uploadContent">
+
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                    <h2>
+                        Drop Image or Click to Browse
+                    </h2>
+
+                    <p>
+                        JPG • PNG • WEBP • Max 6MB
+                    </p>
+
+                </div>
+
+                <button id="removeImage">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+
+            <!-- BUTTONS -->
+
+            <div class="buttons">
+
+                <button id="runDetection">
+
+                    <i class="fa-solid fa-wave-square"></i>
+
+                    RUN DETECTION
+
+                </button>
+
+                <button id="chooseAnother">
+
+                    <i class="fa-solid fa-image"></i>
+
+                    CHOOSE ANOTHER
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT PANEL -->
+
+        <div class="result-panel">
+
+            <h3>/ VERDICT</h3>
+
+            <div class="result-card">
+
+                <div class="status">
+
+                    <span>
+                        CLASSIFICATION
+                    </span>
+
+                    <h1 id="prediction">
+                        WAITING...
+                    </h1>
+
+                </div>
+
+                <div class="score-container">
+                    <div class="confidence-label">MODEL CONFIDENCE</div>
+                    <div class="confidence-value" id="confidence">--</div>
+                    <div class="confidence-track">
+                        <div class="confidence-fill" id="confidenceFill"></div>
+                    </div>
+                </div>
+
+                <div class="score-container" style="margin-top:25px; text-align:center;">
+                    <div class="confidence-label">INFERENCE TIME (ViT)</div>
+                    <div class="confidence-value" id="inferenceTime" style="font-size:22px; color:#9BA7C8;">--</div>
+                </div>
+
+            </div>
+
+            <div class="notification">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span id="statusText">
+                    Awaiting Image...
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= LOADING ================= -->
+
+    <section id="loadingSection">
+
+        <div class="loader"></div>
+
+        <h2>
+            Vision Transformer Processing...
+        </h2>
+
+        <p>
+            Extracting patches • Encoding tokens • Attention Mapping
+        </p>
+
+    </section>
+
+    <!-- ================= VISION TRANSFORMER ================= -->
+
+    <section class="vit-section" id="vitSection">
+
+        <div class="vit-title">
+
+            <p>
+                / VIT PIPELINE • STATIC BREAKDOWN
+            </p>
+
+            <h1>
+                Vision Transformer Analysis
+            </h1>
+
+        </div>
+
+        <div class="vit-grid">
+
+            <!-- Stage 1 -->
+            <div class="stage">
+                <h2>Stage 01</h2>
+                <h3>Image Patching</h3>
+                <div id="patchImage" class="patch-container"></div>
+                <p>Image split into 16x16 patches before entering the transformer encoder.</p>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="stage">
+                <h2>Stage 02</h2>
+                <h3>Patch Embedding</h3>
+                <img id="embeddingImage" src="" style="width:100%; height:180px; object-fit:fill; border-radius:15px; display:none;">
+                <p>The convolutional linear projection of each 16x16 patch into a 768-dimensional token embedding.</p>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="stage">
+                <h2>Stage 03</h2>
+                <h3>Global Self-Attention</h3>
+                <img id="heatmapImage" src="" style="width:100%; height:180px; object-fit:fill; border-radius:15px; display:none;">
+                <p>The extracted ViT attention matrix reveals the exact pixels contributing to the deepfake classification.</p>
+            </div>
+
+            <!-- Stage 4 -->
+            <div class="stage">
+                <h2>Stage 04</h2>
+                <h3>Classification Probabilities</h3>
+                <div class="bars">
+                    <label>REAL</label>
+                    <div class="bar">
+                        <div class="real-bar" id="realBar"></div>
+                    </div>
+                    <label>FAKE</label>
+                    <div class="bar">
+                        <div class="fake-bar" id="fakeBar"></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+    </section>
+
+</div>
+
+<!-- DATASET DISCLAIMER -->
+<div style="text-align:center; max-width: 800px; margin: 40px auto; padding: 15px; background: rgba(18,25,42,0.6); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; backdrop-filter: blur(10px);">
+    <p style="color: #6a7c9f; font-size: 13px; line-height: 1.6; margin: 0;">
+        <i class="fa-solid fa-shield-halved" style="color: #4FCBFF; margin-right: 5px;"></i>
+        <strong>Dataset & Scope Limitations:</strong> This Vision Transformer was trained specifically on human facial biometrics. Out-of-distribution (OOD) images such as animals, objects, or heavily compressed media may yield unpredictable confidence scores.
+    </p>
+</div>
+
+<script src="{{ url_for('static', filename='style.js') }}"></script>
+
+</body>
+</html>

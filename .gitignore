@@ -1,0 +1,14 @@
+# Ignore heavy machine learning models (Exceeds GitHub 100MB limit)
+saved_model/
+*.pth
+
+# Ignore huge datasets
+Data/
+*.zip
+
+# Ignore python cache
+__pycache__/
+*.pyc
+
+# Ignore user uploads
+uploads/
